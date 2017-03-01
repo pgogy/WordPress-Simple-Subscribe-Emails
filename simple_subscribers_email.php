@@ -16,7 +16,8 @@
 			add_action("personal_options_update", array($this,"save_user"));
 			add_action("edit_user_profile_update", array($this,"save_user"));
 			add_action("user_register", array($this,"registration_save"));
-			add_action("publish_post", array($this,"send_emails"));
+			add_action("draft_to_publish", array($this,"send_emails"));
+			add_action("future_to_publish", array($this,"send_emails"));
 			 
 		}
 		
@@ -50,6 +51,7 @@
 				
 					$email = "<p>" . __("Hello", 'simple_subscribers_email') . ",</p><p>" . __("There is new content on", "simple_subscribers_email") . " " . get_bloginfo('name') . "</p>.";
 					$email .= "<p>" . __("Here is a link to the new post", "simple_subscribers_email") . " <a href='" . get_the_permalink($post_id) . "'>" . $post->post_title . "</a></p>.";
+					$email .= "<p>" . __("Here is the post content", "simple_subscribers_email") . "</p><p>" . $post->post_content . "</p>.";
 					$email .= "<p><a href='" . $unsubscribe . "'>" . __("Unsubscribe", 'simple_subscribers_email') . "</a></p>"; 
 					$email .= "<p>" . __("Thanks", "simple_subscribers_email") . "</p>"; 
 				
